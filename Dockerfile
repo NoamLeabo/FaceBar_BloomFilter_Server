@@ -1,1 +1,1 @@
-FROM: gcc:latest
+FROM gcc:latest
