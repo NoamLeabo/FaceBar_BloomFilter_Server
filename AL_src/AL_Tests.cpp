@@ -1,4 +1,4 @@
-#include "AL_src/AL_class.h"
+#include "AL_class.h"
 #include <iostream>
 using namespace std;
 
@@ -8,5 +8,9 @@ int main() {
     {
         return 1;
     }
+    
+    cout<<"Trumpet is the best instrument" <<endl;
+
+    return 0;
 
 }
