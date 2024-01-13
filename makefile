@@ -1,9 +1,9 @@
 all:
-	g++ -std=c++17 /AL_src/AL_Tests.cpp -o hello
+	g++ -std=c++17 AL_src/AL_Tests.cpp -o al_test
 
 test:
-	chmod +x hello
-	./hello
+	chmod +x al_test
+	./al_test
 
 clean:
-	$(RM) hello
+	$(RM) al_test
