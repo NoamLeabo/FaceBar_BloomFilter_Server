@@ -1,11 +1,13 @@
 #include <iostream>
 using namespace std;
+#include <string>
 class BloomFilter{
     private:
     int* array;
     int size;
     int hash1;
     int hash2;
+    
 
 
     public:
@@ -37,4 +39,22 @@ class BloomFilter{
      int arrayLength(){
         return size;
      }
+     // add URL to BF
+     void addUrl(string url){
+      hash<string> hasher;
+      long hashed=hasher(url)%size;
+      array[hashed]=1;
+     }
+
+     // check if URL is in BF
+
+     bool checkUrl(string url){
+      hash<string> hasher;
+      long hashed=hasher(url)%size;
+      if(array[hashed]==1){
+         return true;
+      }
+      return false;
+     }
+
 };
