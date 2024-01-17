@@ -45,9 +45,17 @@ class BloomFilter{
       long hashed=hasher(url)%size;
       array[hashed]=1;
      }
+      // get index which is 1 after 1 hash func => we use this for the tests
+     int getIndex(){
+      for ( int i = 0; i < size; i++)
+      {
+         if(array[i]==1)
+            return 1;
+      }
+      return -1;
+     }
 
      // check if URL is in BF
-
      bool checkUrl(string url){
       hash<string> hasher;
       long hashed=hasher(url)%size;

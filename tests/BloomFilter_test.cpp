@@ -16,8 +16,16 @@ TEST(BuildTest,BasicTest2) {
     EXPECT_EQ(f1.numHash2(),2);
 }
 // testing adding and searching url in BF
-TEST(AddTest,BasicTest3){
+TEST(AddUrlTest,BasicTest3){
     BloomFilter f1(8,1);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkUrl("www.example.com0"),true);
+}
+
+// testing adding and searching url in BF - 2 times hash
+// accorfin to example in the exercise
+TEST(HashTest,BasicTest4){
+    BloomFilter f1(8,2);
+    EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
+    EXPECT_EQ(f1.checkUrl(" www.example.com4"),true);
 }
