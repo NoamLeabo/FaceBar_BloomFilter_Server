@@ -9,7 +9,7 @@ TEST(BuildTest,BasicTest) {
     
 }
 
-TEST(BuildTest,BasicTest2) {
+TEST(Test2args,BasicTest2) {
     BloomFilter f1(8,1,2);
     EXPECT_EQ(f1.arrayLength(),8);
     EXPECT_EQ(f1.numHash1(),1);
