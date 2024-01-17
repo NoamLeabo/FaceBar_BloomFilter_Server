@@ -26,6 +26,6 @@ TEST(AddUrlTest,BasicTest3){
 // accorfin to example in the exercise
 TEST(HashTest,BasicTest4){
     BloomFilter f1(8,2);
-    EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl(" www.example.com4"),true);
+    EXPECT_NO_FATAL_FAILURE(f1.addUrl("www.example.com0"));
+    EXPECT_EQ(f1.checkUrl("www.example.com4"),true);
 }
