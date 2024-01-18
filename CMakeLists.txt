@@ -16,12 +16,14 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 set(SOURCE_FILES
+    src/FilterRunenr.cpp
     src/BloomFilter.cpp # this is where the code we want to test
 )
 
 set(TEST_FILES
     tests/test_main.cpp # this is the main for tests
     tests/BloomFilter_test.cpp # this file contain the tests
+    tests/FilterRunner_test.cpp
 )
 add_executable(BloomFilterTests ${TEST_FILES})
 
