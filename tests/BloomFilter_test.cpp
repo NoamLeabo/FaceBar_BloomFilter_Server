@@ -38,7 +38,7 @@ TEST(NegTest,BasicTest5){
 
 // andvanced test
 TEST(Multitest,AdvancedTest){
-    BloomFilter f1(8,2);
+    BloomFilter f1(8,1,2);
     EXPECT_EQ(f1.checkUrl("www.example.com0"),false);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkUrl("www.example.com0"),true);

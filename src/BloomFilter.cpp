@@ -6,10 +6,10 @@ class BloomFilter{
     private:
     int* array;
     int size;
-    map<int,int> funcs;
+    map<int,int> funcsMap;
     
 
-    // hash with func1 or func2. "amount" times we hash with func
+    // hash with func1 or func2. "amount" times we hash with func and put "1" in array in place
     void hashFunc(string url,int amount){
       size_t hashed=std::hash<string>()(url);
       for (int i = 1; i <= amount-1; i++)
@@ -43,24 +43,24 @@ class BloomFilter{
     BloomFilter(int size,int num1){
         array= new int[size];
         this->size=size;
-        funcs[1]=num1;
+        funcsMap[1]=num1;
     }
     // constructor for 2 hash funcs
     BloomFilter(int size,int num1,int num2){
         array= new int[size];
         this->size=size;
-        funcs[1]=num1;
-        funcs[2]=num2;
+        funcsMap[1]=num1;
+        funcsMap[2]=num2;
     }
 
      // number of times we hash with func 1
      int numHash1(){
-        return funcs[1];
+        return funcsMap[1];
      }
 
      // number of times we hash with func 2
      int numHash2(){
-        return funcs[2];
+        return funcsMap[2];
      }
 
      int arrayLength(){
@@ -68,8 +68,10 @@ class BloomFilter{
      }
      // add URL to BF
      void addUrl(string url){
-      hashFunc(url,funcs[1]);
-      hashFunc(url,funcs[2]);
+      for (auto &entry : funcsMap)
+      {
+         hashFunc(url,entry.second);
+      }
      }
      // get index which is 1 after 1 hash func => we use this for the tests
      int getIndex(){
@@ -83,7 +85,13 @@ class BloomFilter{
 
      // check if URL is in BF
      bool checkUrl(string url){
-      return checkFunc(url,funcs[1]) && checkFunc(url,funcs[2]);
+      for (auto &entry : funcsMap)
+      {
+         bool result=checkFunc(url,entry.second);
+         if (result==false)
+            return false;
+      }
+      return true;
      }
 
 };
