@@ -16,7 +16,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 set(SOURCE_FILES
-    src/FilterRunenr.cpp
+    src/FilterRunner.cpp
     src/BloomFilter.cpp # this is where the code we want to test
 )
 
