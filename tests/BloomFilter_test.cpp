@@ -36,12 +36,28 @@ TEST(NegTest,BasicTest5){
     EXPECT_EQ(f1.checkUrl("www.example.com0"),false);
 }
 
-// andvanced test
-TEST(Multitest,AdvancedTest){
+// andvanced test from targil examp1
+TEST(Multitest,AdvancedTest1){
     BloomFilter f1(8,1,2);
     EXPECT_EQ(f1.checkUrl("www.example.com0"),false);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkUrl("www.example.com0"),true);
     EXPECT_EQ(f1.checkUrl("www.example.com1"),false);
     EXPECT_EQ(f1.checkUrl("www.example.com11"),true);
+}
+
+// andvanced test from targil examp2
+TEST(Multitest,AdvancedTest2){
+    BloomFilter f1(8,1);
+    EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
+    EXPECT_EQ(f1.checkUrl("www.example.com0"),true);
+    EXPECT_EQ(f1.checkUrl("www.example.com1"),true);
+}
+
+// andvanced test from targil examp3
+TEST(Multitest,AdvancedTest3){
+    BloomFilter f1(8,2);
+    EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
+    EXPECT_EQ(f1.checkUrl("www.example.com0"),true);
+    EXPECT_EQ(f1.checkUrl("www.example.com4"),true);
 }
