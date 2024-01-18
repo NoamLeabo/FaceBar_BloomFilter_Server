@@ -35,3 +35,13 @@ TEST(NegTest,BasicTest5){
     BloomFilter f1(8,2);
     EXPECT_EQ(f1.checkUrl("www.example.com0"),false);
 }
+
+// andvanced test
+TEST(Multitest,AdvancedTest){
+    BloomFilter f1(8,2);
+    EXPECT_EQ(f1.checkUrl("www.example.com0"),false);
+    EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
+    EXPECT_EQ(f1.checkUrl("www.example.com0"),true);
+    EXPECT_EQ(f1.checkUrl("www.example.com1"),false);
+    EXPECT_EQ(f1.checkUrl("www.example.com11"),true);
+}
