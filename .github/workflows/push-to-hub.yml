@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: name/Foobar_Project
+          images: arnonlutsky/Foobar_Project
 
       - name: Build and push
         uses: docker/build-push-action@v5
