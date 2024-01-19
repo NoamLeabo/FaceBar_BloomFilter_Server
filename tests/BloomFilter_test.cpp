@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "../src/BloomFilter.cpp"
+#include"BloomFilter.h"
 
 // testing basic built with 1 hash func
 TEST(BuildTest,BasicTest1) {
