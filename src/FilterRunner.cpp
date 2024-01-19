@@ -1,9 +1,13 @@
 #include <iostream>
 #include "../src/BloomFilter.cpp"
 class FilterRunner{
-    public:
-    int run()
+    int main(int argc, char const *argv[])
     {
+        while (true)
+        {
+            /* code */
+        }
+        
         return 0;
     }
     
