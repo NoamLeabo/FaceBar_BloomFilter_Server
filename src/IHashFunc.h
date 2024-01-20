@@ -7,8 +7,7 @@
 using namespace std;
 
 class IHashFunc : public ICommandable {
-    public:
-        virtual int hashing(string url) = 0;
+    
 };
 
 #endif
