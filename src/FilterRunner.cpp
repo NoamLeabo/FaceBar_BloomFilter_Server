@@ -9,7 +9,7 @@ using namespace std;
 
 class FilterRunner
 {
-    
+
     // check if url is int blacklist
     void checkinList(vector<string> list, string url)
     {

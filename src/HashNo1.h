@@ -5,10 +5,11 @@
 
 using namespace std;
 
-class HashNo1 : public HashFunc {
-    public:
-        void hashing(string url);
-        virtual size_t getValue();
+class HashNo1 : public HashFunc
+{
+public:
+    void hashing(string url);
+    virtual size_t getValue();
 };
 
 #endif
