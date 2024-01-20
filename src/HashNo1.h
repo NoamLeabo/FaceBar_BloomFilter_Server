@@ -1,12 +1,13 @@
 #ifndef HASHNO1_H
 #define HASHNO1_H
 
-#include "IHashFunc.h"
+#include "HashFunc.h"
 
 using namespace std;
 
-class HashNo1 : public IHashFunc {
-    
+class HashNo1 : public HashFunc {
+    public:
+        void hashing(string url);
 };
 
 #endif

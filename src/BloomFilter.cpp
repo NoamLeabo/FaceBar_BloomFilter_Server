@@ -17,9 +17,10 @@ using namespace std;
         funcsMap[1]=num1;
         funcsMap[2]=num2;
    }
-   
+
    void BloomFilter :: hashFunc(string url,int amount){
       size_t hashed=std::hash<string>()(url);
+      
       for (int i = 1; i <= amount-1; i++)
       {
          // hashing the hashed string again 
