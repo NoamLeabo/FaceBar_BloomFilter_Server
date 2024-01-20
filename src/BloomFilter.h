@@ -23,8 +23,6 @@ public:
     void addHashFunc(int hashIndex, HashFunc *HashFunc);
     void hashFunc(string url);
     bool checkFunc(string url);
-    int numHash1();
-    int numHash2();
     int arrayLength();
     void addUrl(string url);
     int getIndex();

@@ -12,7 +12,7 @@ class FilterRunner
     int main(int argc, char const *argv[])
     {
         std::string input;
-
+        
         int size, hash1, hash2, task;
         BloomFilter *filter;
 
