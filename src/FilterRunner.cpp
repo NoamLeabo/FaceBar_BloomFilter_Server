@@ -9,25 +9,8 @@ using namespace std;
 
 class FilterRunner
 {
-
-    // check if url is int blacklist
-    void checkinList(vector<string> list, string url)
-    {
-        for (const auto &element : list)
-        {
-            if (element == url)
-            {
-                cout << "true" << endl;
-                break;
-            }
-        }
-        cout << "false" << endl;
-    }
-
     int main(int argc, char const *argv[])
     {
-        vector<string> urlList;
-        // Declare variables to store the numbers
         std::string input;
 
         int size, hash1, hash2, task;
@@ -42,7 +25,7 @@ class FilterRunner
             if (iss >> size >> hash1 >> hash2)
             {
                 // Numbers extracted successfully
-                filter = new BloomFilter(size, hash1, hash2);
+                filter = new BloomFilter(size);
                 break;
             }
             else
@@ -73,17 +56,17 @@ class FilterRunner
             case 1:
             {
                 filter->addUrl(url);
-                urlList.push_back(url);
                 break;
             }
             case 2:
             {
-                bool check = filter->checkUrl(url);
+                bool check = filter->checkFunc(url);
                 // if true need to check if false positive
                 if (check)
                 {
-                    cout << "true ";
-                    checkinList(urlList, url);
+                    cout << "true - ";
+                    bool check = filter->checkUrl(url);
+                    cout << check << endl;
                 }
                 else
                     cout << "false" << endl;

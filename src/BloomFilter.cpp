@@ -52,17 +52,12 @@ bool BloomFilter ::checkFunc(string url)
       // looking for a match in the array
       if (array[index] == 1)
          indicator = true;
-      else
+      else {
          indicator = false;
+         break;
+      }
    }
-   // if for every HF the bit is turned on, we do another check via "blacklistCheck"
-   if (indicator == true)
-   {
-      return blacklistCheck(url);
-   }
-   // if we've got a missmatch in at least one of the bits, we return false
-   else
-      return indicator;
+   return indicator;
 }
 
 bool BloomFilter ::blacklistCheck(string url)
