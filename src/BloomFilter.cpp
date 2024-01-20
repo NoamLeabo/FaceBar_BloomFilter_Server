@@ -1,5 +1,7 @@
 #include <iostream>
 #include "BloomFilter.h"
+#include "HashFunc.h"
+
 using namespace std;
 #include <string>
 #include <map>
@@ -20,7 +22,7 @@ using namespace std;
 
    void BloomFilter :: hashFunc(string url,int amount){
       size_t hashed=std::hash<string>()(url);
-      
+
       for (int i = 1; i <= amount-1; i++)
       {
          // hashing the hashed string again 
@@ -45,6 +47,10 @@ using namespace std;
       if(array[index]==1)
          return true;
       return false;
+   }
+
+   void BloomFilter:: addHashFunc(int index, HashFunc* hashFunc){
+      this->hashers[index] = *hashFunc;
    }
 
      // number of times we hash with func 1
