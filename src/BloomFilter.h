@@ -14,13 +14,14 @@ class BloomFilter {
         int size;
         map<int,int> funcsMap;               
         map<int, HashFunc> hashers;
+        int numOfHashers;
 
 
     public: 
         BloomFilter(int size, int num1);
         BloomFilter(int size, int num1, int num2);
         void addHashFunc(int hashIndex, HashFunc* HashFunc);
-        void hashFunc(string url,int amount);
+        void hashFunc(string url);
         bool checkFunc(string url,int amount);
         int numHash1();
         int numHash2();

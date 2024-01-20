@@ -1,6 +1,9 @@
 #include <iostream>
 #include "BloomFilter.h"
+#include "HashNo1.h"
+#include "HashNo2.h"
 #include "HashFunc.h"
+
 
 using namespace std;
 #include <string>
@@ -10,28 +13,42 @@ using namespace std;
    BloomFilter::BloomFilter(int size,int num1){
         array= new int[size];
         this->size=size;
-        funcsMap[1]=num1;
+        //funcsMap[1]=num1;
+        HashNo1* f1 = new HashNo1();
+        addHashFunc(0, f1);
    }
     // constructor for 2 hash funcs
    BloomFilter::BloomFilter(int size,int num1,int num2){
         array= new int[size];
         this->size=size;
-        funcsMap[1]=num1;
-        funcsMap[2]=num2;
+        //funcsMap[1]=num1;
+        //funcsMap[2]=num2;
+
+        HashNo1* f1 = new HashNo1();
+        addHashFunc(0, f1);
+        HashNo2* f2 = new HashNo2();
+        addHashFunc(0, f2);
    }
 
-   void BloomFilter :: hashFunc(string url,int amount){
-      size_t hashed=std::hash<string>()(url);
-
-      for (int i = 1; i <= amount-1; i++)
-      {
-         // hashing the hashed string again 
-         hashed=std::hash<string>()(to_string(hashed));
+   void BloomFilter :: hashFunc(string url){
+      for (size_t i = 0; i < this->numOfHashers; i++){
+         hashers[i].hashing(url);
+         int index=hashers[i].getValue()%size;
+         array[index]=1;
       }
-      int index=hashed%size;
-      array[index]=1;
+      
+      // size_t hashed=std::hash<string>()(url);
+
+      // for (int i = 1; i <= amount-1; i++)
+      // {
+      //    // hashing the hashed string again 
+      //    hashed=std::hash<string>()(to_string(hashed));
+      // }
+      // int index=hashed%size;
+      // array[index]=1;
    }
-    
+   
+
     // to complete finding in BF we need to hash the URL according to the amounts and see if we get 1 in the index 
     bool BloomFilter :: checkFunc(string url,int amount) {
       // maybe for examp: func2=0 so we dont need to hash
@@ -68,10 +85,10 @@ using namespace std;
    }
      // add URL to BF
    void BloomFilter:: addUrl(string url){
-      for (auto &entry : funcsMap)
-      {
-         hashFunc(url,entry.second);
-      }
+      // for (auto &entry : funcsMap)
+      // {
+         hashFunc(url);
+      //}
    }
      // get index which is 1 after 1 hash func => we use this for the tests
    int BloomFilter:: getIndex(){
