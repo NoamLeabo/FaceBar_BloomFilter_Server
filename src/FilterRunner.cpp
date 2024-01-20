@@ -6,9 +6,10 @@
 #include <string>
 #include <vector>
 using namespace std;
+
 class FilterRunner
 {
-
+    
     // check if url is int blacklist
     void checkinList(vector<string> list, string url)
     {
@@ -22,6 +23,7 @@ class FilterRunner
         }
         cout << "false" << endl;
     }
+
     int main(int argc, char const *argv[])
     {
         vector<string> urlList;
