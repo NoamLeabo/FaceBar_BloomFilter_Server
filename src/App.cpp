@@ -1,12 +1,28 @@
 #include "App.h"
+#include "AddUrl.h"
+#include "CheckUrl.h"
 #include <iostream>
 #include <iostream>
 #include <limits>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <regex>
+
 using namespace std;
-App::App() : bloomFilter(0, 1){
+App::App() : bF(0, 1), numOfCommands(0), commands() {
+    AddUrl add(&this->bF);
+    addCommand(1, &add);
+    CheckUrl check(&this->bF);
+    addCommand(2, &check);
+}
+
+
+void App::addCommand(int index, ICommandable* command){
+    // we add to the command another app
+   this->commands[index] = command;
+   // updating the current Num of commands we have so far
+   this->numOfCommands++;
 }
 
 void App::run() {
@@ -16,13 +32,14 @@ void App::run() {
     while (true)
     {
         std::getline(std::cin, input);
+    
         // Using stringstream to extract numbers from the input
         std::istringstream iss(input);
         // Try to extract three numbers
         if (iss >> size >> hash1 >> hash2)
         {
             // Numbers extracted successfully
-            bloomFilter = BloomFilter(size, hash1, hash2);
+            bF = BloomFilter(size, hash1, hash2);
             break;
         }
         else
@@ -34,7 +51,7 @@ void App::run() {
             iss.seekg(0);
             if (iss >> size >> hash1)
             {
-                bloomFilter = BloomFilter(size, hash1);
+                bF = BloomFilter(size, hash1);
                 break;
             }
         }
@@ -46,37 +63,7 @@ void App::run() {
     // 1 add to BF. 2 search in BF
     while (true)
     {
-        switch (task)
-        {
-            case 1:
-            {
-                bloomFilter.addUrl(url);
-                break;
-            }
-            case 2:
-            {
-                bool check = bloomFilter.checkFunc(url);
-                // if true need to check if false positive
-                if (check)
-                {
-                    cout << "true ";
-                    bool check = bloomFilter.blacklistCheck(url);
-                    if (check)
-                    {
-                        cout << "true" << endl;
-                    }
-                    else
-                    cout << "false" << endl;
-                }
-                else
-                    cout << "false" << endl;
-                break;
-            }
-                // get new line if invalid input
-            default:
-            {
-            }
-        }
+        this->commands[task]->execute(url);
         cin >> task;
         getline(cin, url);
     }

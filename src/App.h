@@ -3,14 +3,19 @@
 #include <string>
 #include <map>
 #include "BloomFilter.h"
+#include "ICommandable.h"
+
+
 class App{
 private:
-    BloomFilter bloomFilter;
+    BloomFilter bF;
+    map<int, ICommandable*> commands;
+    int numOfCommands;
 
 public:
     App();
     void run();
-
+    void addCommand(int index, ICommandable* command);
 };
 
 #endif
