@@ -16,6 +16,7 @@ BloomFilter::BloomFilter(int size, int num1) : numOfHashers(0), size(size), arra
    HashNo1 *f1 = new HashNo1();
    addHashFunc(1, f1);
 }
+
 // constructor for 2 hash funcs
 BloomFilter::BloomFilter(int size) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
@@ -25,6 +26,7 @@ BloomFilter::BloomFilter(int size) : numOfHashers(0), size(size), array(new int[
    HashNo2 *f2 = new HashNo2();
    addHashFunc(2, f2);
 }
+
 // adding the BF another HF
 void BloomFilter::addHashFunc(int index, HashFunc *hashFunc)
 {
@@ -33,12 +35,14 @@ void BloomFilter::addHashFunc(int index, HashFunc *hashFunc)
    // updating the current Num of HF we have so far
    this->numOfHashers++;
 }
+
 // add URL to BF
 void BloomFilter::addUrl(string url)
 {
    hashFunc(url);
    this->list->push_back(url);
 }
+
 // hashig the string and inserting its value to the BF
 void BloomFilter ::hashFunc(string url)
 {
@@ -50,6 +54,7 @@ void BloomFilter ::hashFunc(string url)
       array[index] = 1;
    }
 }
+
 // checking if a url is in the BF *TABLE* (terms of bits)
 bool BloomFilter ::checkFunc(string url)
 {
@@ -73,6 +78,7 @@ bool BloomFilter ::checkFunc(string url)
    }
    return indicator;
 }
+
 // checking if a url is actually in the BF blacklist
 bool BloomFilter ::blacklistCheck(string url)
 {
@@ -85,11 +91,13 @@ bool BloomFilter ::blacklistCheck(string url)
    else
       return false;
 }
+
 // return the BF's size
 int BloomFilter::arrayLength()
 {
    return size;
 }
+
 // get index which is 1 after 1 hash func => we use this for the tests
 int BloomFilter::getIndex()
 {
