@@ -8,6 +8,7 @@ using namespace std;
 class HashNo2 : public HashFunc
 {
 public:
+    HashNo2();
     void hashing(string url);
     virtual size_t getValue();
 };
