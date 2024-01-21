@@ -26,7 +26,6 @@ public:
     int arrayLength();
     void addUrl(string url);
     int getIndex();
-    bool checkUrl(string url);
     bool blacklistCheck(string url);
 };
 

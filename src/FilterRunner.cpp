@@ -12,7 +12,7 @@ class FilterRunner
     int main(int argc, char const *argv[])
     {
         std::string input;
-        
+
         int size, hash1, hash2, task;
         BloomFilter *filter;
 
@@ -65,7 +65,7 @@ class FilterRunner
                 if (check)
                 {
                     cout << "true - ";
-                    bool check = filter->checkUrl(url);
+                    bool check = filter->blacklistCheck(url);
                     cout << check << endl;
                 }
                 else
