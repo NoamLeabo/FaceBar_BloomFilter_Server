@@ -25,7 +25,7 @@ BloomFilter::BloomFilter(int size, int num1) : numOfHashers(0), size(size), arra
 }
 
 // constructor for 2 hash funcs
-BloomFilter::BloomFilter(int sizem, int num1, int num2) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int size, int num1, int num2) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
    // we add 2 HF to the BF
    HashNo1 *f1 = new HashNo1();

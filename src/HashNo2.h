@@ -4,7 +4,6 @@
 #include "HashFunc.h"
 
 using namespace std;
-
 class HashNo2 : public HashFunc
 {
 public:

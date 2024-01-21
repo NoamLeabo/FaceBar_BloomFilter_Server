@@ -1,21 +1,16 @@
 #include <gtest/gtest.h>
-#include "../src/BloomFilter.cpp"
 #include "BloomFilter.h"
+#include "HashNo1.h"
+#include "HashNo2.h"
+#include "HashFunc.h"
 
-// testing basic built with 2 hash func
-TEST(BuildTest, BasicTest2)
-{
-    BloomFilter f1(8, 1);
-    EXPECT_EQ(f1.arrayLength(), 8);
-    EXPECT_EQ(f1.numHash1(), 1);
-    EXPECT_EQ(f1.numHash2(), 2);
-}
+
 // testing adding and searching url in BF
 TEST(AddUrlTest, BasicTest3)
 {
     BloomFilter f1(8, 1);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), true);
 }
 
 // testing adding and searching url in BF - 2 times hash
@@ -24,25 +19,27 @@ TEST(HashTest, BasicTest4)
 {
     BloomFilter f1(8, 2);
     EXPECT_NO_FATAL_FAILURE(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl("www.example.com4"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com4"), true);
 }
 
 // testing negative. nothing in BF => need to get False
 TEST(NegTest, BasicTest5)
 {
     BloomFilter f1(8, 2);
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), false);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), false);
 }
 
 // andvanced test from targil examp1
 TEST(Multitest, AdvancedTest1)
 {
-    BloomFilter f1(8);
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), false);
+    BloomFilter f1(8,1,2);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), false);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), true);
-    EXPECT_EQ(f1.checkUrl("www.example.com1"), false);
-    EXPECT_EQ(f1.checkUrl("www.example.com11"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com0"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com1"), false);
+    EXPECT_EQ(f1.checkFunc("www.example.com11"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com11"), false);
 }
 
 // andvanced test from targil examp2
@@ -50,8 +47,10 @@ TEST(Multitest, AdvancedTest2)
 {
     BloomFilter f1(8, 1);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), true);
-    EXPECT_EQ(f1.checkUrl("www.example.com1"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com0"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com1"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com1"), false);
 }
 
 // andvanced test from targil examp3
@@ -59,6 +58,8 @@ TEST(Multitest, AdvancedTest3)
 {
     BloomFilter f1(8, 2);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
-    EXPECT_EQ(f1.checkUrl("www.example.com0"), true);
-    EXPECT_EQ(f1.checkUrl("www.example.com4"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com0"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com0"), true);
+    EXPECT_EQ(f1.checkFunc("www.example.com4"), true);
+    EXPECT_EQ(f1.blacklistCheck("www.example.com4"), false);
 }
