@@ -1,5 +1,5 @@
-#ifndef MYCLASS_H
-#define MYCLASS_H
+#ifndef BLOOMFILTER_H
+#define BLOOMFILTER_H
 
 #include "HashFunc.h"
 
