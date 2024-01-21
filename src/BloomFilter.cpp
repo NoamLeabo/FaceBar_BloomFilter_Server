@@ -18,7 +18,8 @@ BloomFilter::BloomFilter(int size, int num1) : numOfHashers(0), size(size), arra
       HashNo1 *f1 = new HashNo1();
       addHashFunc(1, f1);
    }
-   else {
+   else
+   {
       HashNo2 *f1 = new HashNo2();
       addHashFunc(1, f1);
    }

@@ -15,7 +15,7 @@ private:
     int *array;
     int size;
     vector<string> *list;
-    map<int, HashFunc*> hashers;
+    map<int, HashFunc *> hashers;
     int numOfHashers;
 
 public:

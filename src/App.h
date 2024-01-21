@@ -5,17 +5,17 @@
 #include "BloomFilter.h"
 #include "ICommandable.h"
 
-
-class App{
+class App
+{
 private:
     BloomFilter bF;
-    map<int, ICommandable*> commands;
+    map<int, ICommandable *> commands;
     int numOfCommands;
 
 public:
     App();
     void run();
-    void addCommand(int index, ICommandable* command);
+    void addCommand(int index, ICommandable *command);
 };
 
 #endif

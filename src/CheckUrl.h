@@ -5,16 +5,15 @@
 #include "ICommandable.h"
 #include "BloomFilter.h"
 
-
 using namespace std;
 
 class CheckUrl : public ICommandable
 {
 private:
-    BloomFilter* bF;
+    BloomFilter *bF;
 
 public:
-    CheckUrl(BloomFilter* bF);
+    CheckUrl(BloomFilter *bF);
     void execute(string url);
 };
 
