@@ -13,12 +13,19 @@ using namespace std;
 BloomFilter::BloomFilter(int size, int num1) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
    // we add HF (stands for HashFunc) to the BF (stands for BloomFilter)
-   HashNo1 *f1 = new HashNo1();
-   addHashFunc(1, f1);
+   if (num1 == 1)
+   {
+      HashNo1 *f1 = new HashNo1();
+      addHashFunc(1, f1);
+   }
+   else {
+      HashNo2 *f1 = new HashNo2();
+      addHashFunc(1, f1);
+   }
 }
 
 // constructor for 2 hash funcs
-BloomFilter::BloomFilter(int size) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int sizem, int num1, int num2) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
    // we add 2 HF to the BF
    HashNo1 *f1 = new HashNo1();
@@ -31,7 +38,7 @@ BloomFilter::BloomFilter(int size) : numOfHashers(0), size(size), array(new int[
 void BloomFilter::addHashFunc(int index, HashFunc *hashFunc)
 {
    // we add to the BF another HF
-   this->hashers[index] = *hashFunc;
+   this->hashers[index] = hashFunc;
    // updating the current Num of HF we have so far
    this->numOfHashers++;
 }
@@ -49,8 +56,8 @@ void BloomFilter ::hashFunc(string url)
    // for each HF we the BF has we get the URL's H-value and updating teh array acordingly
    for (size_t i = 1; i <= this->numOfHashers; i++)
    {
-      hashers[i].hashing(url);
-      int index = hashers[i].getValue() % size;
+      hashers[i]->hashing(url);
+      int index = hashers[i]->getValue() % size;
       array[index] = 1;
    }
 }
@@ -64,9 +71,9 @@ bool BloomFilter ::checkFunc(string url)
    for (size_t i = 1; i <= numOfHashers; i++)
    {
       // doing the hashing the url with the HF i
-      hashers[i].hashing(url);
+      hashers[i]->hashing(url);
       // mod on the result
-      int index = hashers[i].getValue() % size;
+      int index = hashers[i]->getValue() % size;
       // looking for a match in the array
       if (array[index] == 1)
          indicator = true;
