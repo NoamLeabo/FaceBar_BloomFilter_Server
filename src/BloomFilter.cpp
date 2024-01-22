@@ -53,7 +53,7 @@ void BloomFilter ::hashFunc(string url)
 }
 
 // checking if a url is in the BF *TABLE* (terms of bits)
-bool BloomFilter ::checkFunc(string url)
+bool BloomFilter ::checkInBitsArray(string url)
 {
    // we set an indicator that checks whether we have a match
    bool indicator = true;
@@ -77,7 +77,7 @@ bool BloomFilter ::checkFunc(string url)
 }
 
 // checking if a url is actually in the BF blacklist
-bool BloomFilter ::blacklistCheck(string url)
+bool BloomFilter ::urlBlacklistCheck(string url)
 {
    // we scan the list of confirmed blacklist and check if the given url is there
    auto scan = find(this->list->begin(), this->list->end(), url);

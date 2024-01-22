@@ -24,11 +24,11 @@ public:
     BloomFilter(int size, int num1, int num2, vector<HashFunc*> funcBank);
     void addHashFunc(int hashIndex, HashFunc *HashFunc);
     void hashFunc(string url);
-    bool checkFunc(string url);
+    bool checkInBitsArray(string url);
     int arrayLength();
     void addUrl(string url);
     int getIndex();
-    bool blacklistCheck(string url);
+    bool urlBlacklistCheck(string url);
 };
 
 #endif
