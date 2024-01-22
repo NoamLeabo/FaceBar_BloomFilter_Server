@@ -18,10 +18,13 @@ enable_testing()
 set(SOURCE_FILES
     src/HashNo1.cpp
     src/HashNo2.cpp
+    src/CheckUrl.cpp
     src/BloomFilter.cpp # this is where the code we want to test
 )
 
 set(TEST_FILES
+    tests/HashNo2_test.cpp
+    tests/CheckUrl_test.cpp
     tests/test_main.cpp # this is the main for tests
     tests/BloomFilter_test.cpp # this file contain the tests
 )

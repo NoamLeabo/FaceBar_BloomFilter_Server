@@ -72,18 +72,13 @@ void App::run()
         string url;
         // getting the input
         getline(cin, url);
-
+        
         // performing the given task by executing its action
         // Check if the key exists in the commands map
         if (commands.find(task) != commands.end())
         {
             // performing the given task by executing its action
             this->commands[task]->execute(url);
-        }
-        else
-        {
-            // Handle the case where the key is not found (invalid task)
-            cout << "sorry, no can do" << endl;
         }
     }
 }
