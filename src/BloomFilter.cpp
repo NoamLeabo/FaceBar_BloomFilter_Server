@@ -10,29 +10,18 @@ using namespace std;
 #include <map>
 
 // constructor
-BloomFilter::BloomFilter(int size, int num1) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int size, int num1, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
-   // we add HF (stands for HashFunc) to the BF (stands for BloomFilter)
-   if (num1 == 1)
-   {
-      HashNo1 *f1 = new HashNo1();
-      addHashFunc(1, f1);
-   }
-   else
-   {
-      HashNo2 *f1 = new HashNo2();
-      addHashFunc(1, f1);
-   }
+   //we inject the required hashFunc from the funcBank
+   addHashFunc(1, this->funcBank.at(num1 - 1));
 }
 
 // constructor for 2 hash funcs
-BloomFilter::BloomFilter(int size, int num1, int num2) : numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int size, int num1, int num2, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
 {
-   // we add 2 HF to the BF
-   HashNo1 *f1 = new HashNo1();
-   addHashFunc(1, f1);
-   HashNo2 *f2 = new HashNo2();
-   addHashFunc(2, f2);
+   //we inject the required hashFuncs from the funcBank
+   addHashFunc(1, this->funcBank.at(num1 - 1));
+   addHashFunc(2, this->funcBank.at(num2 - 1));
 }
 
 // adding the BF another HF

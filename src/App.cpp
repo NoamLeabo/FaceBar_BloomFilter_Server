@@ -12,9 +12,9 @@
 using namespace std;
 
 // constructor
-App::App() : bF(0, 1), numOfCommands(0), commands()
+App::App(vector<HashFunc*> funcBank) :funcBank(funcBank) ,bF(0, 1, funcBank), numOfCommands(0), commands()
 {
-    // we add the 'Add' and 'Check' URL commands to our app
+    
 }
 
 // adding a command to the app's commands map
@@ -45,7 +45,7 @@ void App::run()
         if (iss >> size >> hash1 >> hash2)
         {
             // Numbers extracted successfully and so we build the BF accordingly
-            bF = BloomFilter(size, hash1, hash2);
+            bF = BloomFilter(size, hash1, hash2, this->funcBank);
             AddUrl add(&bF);
             addCommand(1, &add);
             CheckUrl check(&bF);
@@ -63,7 +63,7 @@ void App::run()
             if (iss >> size >> hash1)
             {
                 // Numbers extracted successfully and so we build the BF accordingly
-                bF = BloomFilter(size, hash1);
+                bF = BloomFilter(size, hash1, this->funcBank);
                 AddUrl add(&bF);
                 addCommand(1, &add);
                 CheckUrl check(&bF);
