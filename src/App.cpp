@@ -15,10 +15,6 @@ using namespace std;
 App::App() : bF(0, 1), numOfCommands(0), commands()
 {
     // we add the 'Add' and 'Check' URL commands to our app
-    AddUrl add(&this->bF);
-    addCommand(1, &add);
-    CheckUrl check(&this->bF);
-    addCommand(2, &check);
 }
 
 // adding a command to the app's commands map
@@ -50,6 +46,10 @@ void App::run()
         {
             // Numbers extracted successfully and so we build the BF accordingly
             bF = BloomFilter(size, hash1, hash2);
+            AddUrl add(&bF);
+            addCommand(1, &add);
+            CheckUrl check(&bF);
+            addCommand(2, &check);
             break;
         }
         else
@@ -64,6 +64,10 @@ void App::run()
             {
                 // Numbers extracted successfully and so we build the BF accordingly
                 bF = BloomFilter(size, hash1);
+                AddUrl add(&bF);
+                addCommand(1, &add);
+                CheckUrl check(&bF);
+                addCommand(2, &check);
                 break;
             }
         }
@@ -80,7 +84,17 @@ void App::run()
     while (true)
     {
         // performing the given task by executing its action
-        this->commands[task]->execute(url);
+        // Check if the key exists in the commands map
+        if (commands.find(task) != commands.end())
+        {
+            // performing the given task by executing its action
+            this->commands[task]->execute(url);
+        }
+        else
+        {
+            // Handle the case where the key is not found (invalid task)
+            cout << "Invalid task: " << task << endl;
+        }
         // and getting another input from the user
         cin >> task;
         getline(cin, url);
