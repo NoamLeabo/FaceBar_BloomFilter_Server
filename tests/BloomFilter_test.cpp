@@ -8,7 +8,12 @@
 // testing adding and searching url in BF
 TEST(AddUrlTest, BasicTest3)
 {
-    BloomFilter f1(8, 1);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8, 1,funcBank);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), true);
 }
@@ -17,7 +22,12 @@ TEST(AddUrlTest, BasicTest3)
 // according to example in the exercise
 TEST(HashTest, BasicTest4)
 {
-    BloomFilter f1(8, 2);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8, 2,funcBank);
     EXPECT_NO_FATAL_FAILURE(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkInBitsArray("www.example.com4"), true);
 }
@@ -25,14 +35,24 @@ TEST(HashTest, BasicTest4)
 // testing negative. nothing in BF => need to get False
 TEST(NegTest, BasicTest5)
 {
-    BloomFilter f1(8, 2);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8, 2,funcBank);
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), false);
 }
 
 // andvanced test from targil examp1
 TEST(Multitest, AdvancedTest1)
 {
-    BloomFilter f1(8,1,2);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8,1,2,funcBank);
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), false);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), true);
@@ -45,7 +65,12 @@ TEST(Multitest, AdvancedTest1)
 // andvanced test from targil examp2
 TEST(Multitest, AdvancedTest2)
 {
-    BloomFilter f1(8, 1);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8, 1,funcBank);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), true);
     EXPECT_EQ(f1.urlBlacklistCheck("www.example.com0"), true);
@@ -56,7 +81,12 @@ TEST(Multitest, AdvancedTest2)
 // andvanced test from targil examp3
 TEST(Multitest, AdvancedTest3)
 {
-    BloomFilter f1(8, 2);
+    vector<HashFunc*> funcBank;
+    HashNo1 func1;
+    HashNo2 func2;
+    funcBank.push_back(&func1);
+    funcBank.push_back(&func2);
+    BloomFilter f1(8, 2,funcBank);
     EXPECT_NO_THROW(f1.addUrl("www.example.com0"));
     EXPECT_EQ(f1.checkInBitsArray("www.example.com0"), true);
     EXPECT_EQ(f1.urlBlacklistCheck("www.example.com0"), true);
