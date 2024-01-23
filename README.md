@@ -21,12 +21,20 @@ Our process was as followed:
 
 
 After we finished writing the BloomFilter class we refactored it again to improve our code and make it more abstract and loose-coupled from the hash functions.
-We then wrote a simple main that is running the BloomFilter and gettng inputs from the user.
+We then wrote a simple main that is running the BloomFilter and gettןng inputs from the user.
 Then we started to refactor the main to get OOP classes to have the MenuCommands separate form the user 
 inputs and a small main function.
 We then found out that our BloomFilter needs to be refactored and other files needed also to 
 be changed.
 We continued refactoring according to tests we made to pass all tests and have more abstract and readable code.
+Our final code contains the following main components: 
+1. BloomFilter- the blomfilter asked to code in the exercise.
+2. App- file who runs the main loop of the program and interacting with the user's input.
+3. ConsoleMenu- getting the first crucial input that indicates us the length of the bloomfilter and the number of hash functions used.
+4. main- creating an APP object and calling APP's run fucntion.
+5. HashNo1,2- specific hash functions that were asked to use.
+6. CheckUrl- checking if a specific URL is in the bloomfilter.
+7. AddUrl- adding a URL to a bloomfilter.
 
 
 DOCKER:
