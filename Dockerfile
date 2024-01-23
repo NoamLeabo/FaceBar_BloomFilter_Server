@@ -13,6 +13,8 @@ COPY ./src/AddUrl.cpp ./src/
 COPY ./src/CheckUrl.cpp ./src/
 COPY ./src/ConsoleMenu.cpp ./src/
 
+COPY ./src/*.h ./src/
+
 # Compile the source files
 RUN g++ -o main ./src/main.cpp ./src/App.cpp ./src/BloomFilter.cpp ./src/HashNo1.cpp ./src/HashNo2.cpp ./src/AddUrl.cpp ./src/CheckUrl.cpp ./src/ConsoleMenu.cpp
 
