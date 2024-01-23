@@ -3,7 +3,7 @@ all:
 
 
 test:
-	chmod +x src\main
+	chmod +x src/main
 	cmake -B build -S .
 	cmake --build build
 	ctest --test-dir build --output-on-failure
