@@ -1,6 +1,6 @@
 all:
-	cd src
-	g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
+	cd src && g++ -o main main.cpp App.cpp BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
+
 
 test:
 	chmod +x src\main
