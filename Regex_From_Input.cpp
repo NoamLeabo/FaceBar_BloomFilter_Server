@@ -18,7 +18,7 @@ int main(){
 
     // This regular expression matches 3 or 2 numbers and avoids duplicates.
     // ex: 8 1 1 1 2 => 8, 1, 2. 
-    regex regex_Multy_Digit("(^|\n)\\s*(\\d+)(((\\s+(1))+(\\s+(2))?)|((\\s+(2))+(\\s+(1))?))\\s?");
+    regex regex_Multy_Digit("(^|\n)\\s*(\\d+)(((\\s+(1)(\\s|(?=\n|$)))+(\\s*(2))?)|((\\s+(2)(\\s|(?=\n|$)))+(\\s*(1))?))\\s?");
     smatch match;
 
     //If we got a proper input, we'll seperate the input for our apps use:  
