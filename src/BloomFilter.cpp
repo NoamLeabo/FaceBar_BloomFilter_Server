@@ -10,18 +10,27 @@ using namespace std;
 #include <map>
 
 // constructor
-BloomFilter::BloomFilter(int size, int num1, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int size, int num1, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(), list()
 {
    //we inject the required hashFunc from the funcBank
    addHashFunc(1, this->funcBank.at(num1 - 1));
+   //we reset the array size
+   resetBitsArray(size);
 }
 
 // constructor for 2 hash funcs
-BloomFilter::BloomFilter(int size, int num1, int num2, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(new int[size]), list(new vector<string>)
+BloomFilter::BloomFilter(int size, int num1, int num2, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(), list()
 {
    //we inject the required hashFuncs from the funcBank
    addHashFunc(1, this->funcBank.at(num1 - 1));
    addHashFunc(2, this->funcBank.at(num2 - 1));
+   //we reset the array size
+   resetBitsArray(size);
+}
+void BloomFilter::resetBitsArray (int size){
+   for (int i = 0; i < size; ++i) {
+        array.push_back(0);
+    }
 }
 
 // adding the BF another HF
@@ -37,7 +46,7 @@ void BloomFilter::addHashFunc(int index, HashFunc *hashFunc)
 void BloomFilter::addUrl(string url)
 {
    hashFunc(url);
-   this->list->push_back(url);
+   this->list.push_back(url);
 }
 
 // hashig the string and inserting its value to the BF
@@ -80,8 +89,8 @@ bool BloomFilter ::checkInBitsArray(string url)
 bool BloomFilter ::urlBlacklistCheck(string url)
 {
    // we scan the list of confirmed blacklist and check if the given url is there
-   auto scan = find(this->list->begin(), this->list->end(), url);
-   if (scan != this->list->end())
+   auto scan = find(this->list.begin(), this->list.end(), url);
+   if (scan != this->list.end())
    {
       return true;
    }
