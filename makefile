@@ -1,5 +1,5 @@
 all:
-	  g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
+	g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
 
 test:
 	chmod +x main
@@ -8,4 +8,4 @@ test:
 	ctest --test-dir build --output-on-failure
 
 clean:
-    	$(RM) main
+	$(RM) main
