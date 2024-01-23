@@ -1,9 +1,11 @@
 all:
-	g++ -std=c++17 AL_Tests.cpp -o al_test
+	  g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
 
 test:
-	chmod +x al_test
-	./al_test
+      chmod +x main
+	  cmake -B build -S .
+	  cmake --build build
+	  ctest --test-dir build --output-on-failure
 
 clean:
-	$(RM) al_test
+      $(RM) hello helloTest
