@@ -8,4 +8,4 @@ test:
 	  ctest --test-dir build --output-on-failure
 
 clean:
-      $(RM) hello helloTest
+      $(RM) main

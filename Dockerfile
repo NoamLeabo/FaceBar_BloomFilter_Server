@@ -1,8 +1,11 @@
 FROM gcc:latest
 
 
-COPY ./AL_Tests.cpp ./AL_Tests.cpp
+COPY ./src/*.cpp ./src/*.cpp
 
-RUN g++ -o test AL_Tests.cpp 
+RUN sudo apt-get update
+RUN sudo apt-get install -y libgtest-dev cmake
+
+ g++ -o test AL_Tests.cpp 
 
 CMD ["./test"]
