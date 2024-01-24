@@ -24,7 +24,7 @@ Our process was as followed:
 
 
 After we finished writing the BloomFilter class we refactored it again to improve our code and make it more abstract and loose-coupled from the hash functions.
-We then wrote a simple main that is running the BloomFilter and gettןng inputs from the user.
+We then wrote a simple main that is running the BloomFilter and getting inputs from the user.
 Then we started to refactor the main to get OOP classes to have the MenuCommands separate form the user 
 inputs and a small main function.
 We then found out that our BloomFilter needs to be refactored and other files needed also to 
@@ -48,4 +48,4 @@ Dockerfile explanation:
 Copyies all cpp files and relevant header files to the machine, compiles the cpp files and runs the created exe file.
 
 Docker push-to-hub explanation:
-on release, the yml file logins to docker hub, downloads builds and pushes an image of the program to dockerhub/
+on release, the yml file logins to docker hub, downloads builds and pushes an image of the program to dockerhub.
