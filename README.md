@@ -4,7 +4,7 @@ How to compile and run our Project:
 
 COMPILE: g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
 
-RUN: ./main
+RUN:  ./main
 
 JIRA explanantion:
 
@@ -41,6 +41,7 @@ Our final code contains the following main components:
 
 
 DOCKER:
+
 For the docker part, we created a yml file to create and push a new image to dockerhub.
 We also created a Dockerfile for the yml to use.
 
