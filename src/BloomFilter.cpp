@@ -12,25 +12,27 @@ using namespace std;
 // constructor
 BloomFilter::BloomFilter(int size, int num1, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(), list()
 {
-   //we inject the required hashFunc from the funcBank
+   // we inject the required hashFunc from the funcBank
    addHashFunc(1, this->funcBank.at(num1 - 1));
-   //we reset the array size
+   // we reset the array size
    resetBitsArray(size);
 }
 
 // constructor for 2 hash funcs
 BloomFilter::BloomFilter(int size, int num1, int num2, vector<HashFunc *> funcBank) : funcBank(funcBank), numOfHashers(0), size(size), array(), list()
 {
-   //we inject the required hashFuncs from the funcBank
+   // we inject the required hashFuncs from the funcBank
    addHashFunc(1, this->funcBank.at(num1 - 1));
    addHashFunc(2, this->funcBank.at(num2 - 1));
-   //we reset the array size
+   // we reset the array size
    resetBitsArray(size);
 }
-void BloomFilter::resetBitsArray (int size){
-   for (int i = 0; i < size; ++i) {
-        array.push_back(0);
-    }
+void BloomFilter::resetBitsArray(int size)
+{
+   for (int i = 0; i < size; ++i)
+   {
+      array.push_back(0);
+   }
 }
 
 // adding the BF another HF

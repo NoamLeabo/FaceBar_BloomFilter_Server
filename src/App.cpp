@@ -62,23 +62,15 @@ void App::run()
         addCommand(2, &check);
     }
 
-    // task - the user's task
+    // commandVals - the user's command and url for us to deal with
+    string commandVals[2];
     int task;
     while (true)
     {
-        // we get the next command from the user via menu
-        task = menu.nextCommand();
-        // url - the user's url
-        string url;
-        // getting the input
-        getline(cin, url);
-        
+        // task - the user's task and input
+        menu.nextCommand(commandVals);
+        task = stoi(commandVals[0]);
         // performing the given task by executing its action
-        // Check if the key exists in the commands map
-        if (commands.find(task) != commands.end())
-        {
-            // performing the given task by executing its action
-            this->commands[task]->execute(url);
-        }
+        this->commands[task]->execute(commandVals[1]);
     }
 }

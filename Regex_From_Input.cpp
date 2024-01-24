@@ -16,43 +16,38 @@ int main(){
     cout<< "input numbers" << endl;
     std::getline(std::cin, input);;
 
-    // This regular expression matches 3 numbers and avoids duplicates.
+    // This regular expression matches 3 or 2 numbers and avoids duplicates.
     // ex: 8 1 1 1 2 => 8, 1, 2. 
-    regex regex_Multy_Digit("\\s*(\\d+)(((\\s+(1))+(\\s+(2))?)|((\\s+(2))+(\\s+(1))?))\\s?");
-
-    // regex regex_2Digit_input("(\\s*(\\d+))\\s+(\\d+)");
+    regex regex_Multy_Digit("(^|\n)\\s*(\\d+)(((\\s+(1)(\\s|(?=\n|$)))+(\\s*(2))?)|((\\s+(2)(\\s|(?=\n|$)))+(\\s*(1))?))\\s?");
     smatch match;
+
     //If we got a proper input, we'll seperate the input for our apps use:  
     if (std::regex_search(input, match, regex_Multy_Digit))
     {
-        array_size = match[1];
-        cout<< "match 1: " << match[1] << endl;
+        array_size = match[2];
+        cout<< "match 1: " << match[2] << endl;
 
-        cout<< "match 5: " << match[5] << endl;
-        cout<< "match 7: " << match[7] << endl;
+        cout<< "match 5: " << match[6] << endl;
+        cout<< "match 7: " << match[8] << endl;
 
-        cout<< "match 10: " <<match[10] << endl;
-        cout<< "match 12: " <<match[12] << endl;
+        cout<< "match 10: " <<match[11] << endl;
+        cout<< "match 12: " <<match[13] << endl;
 
-        if(((string)match[5]).empty()){
-            hashfunc = match[10];
-            if (!((string)match[12]).empty())
+        if(((string)match[6]).empty()){
+            hashfunc = match[11];
+            if (!((string)match[13]).empty())
             {
-                second_hashfunc = match[12];
+                second_hashfunc = match[13];
             }
         }else{
-            hashfunc = match[5];
-            if (!((string)match[7]).empty())
+            hashfunc = match[6];
+            if (!((string)match[8]).empty())
             {
-                second_hashfunc = match[7];
+                second_hashfunc = match[8];
             }
         }
     }
-    // else if(std::regex_search(input, match, regex_2Digit_input )){
-    //     array_size = match[1];
-    //     hashfunc = match[2];
-    // }
-    
+
     cout << "array size " << array_size <<endl;
     cout << "hash function " << hashfunc <<endl;
     cout << "last part idk what it is " << second_hashfunc <<endl;
