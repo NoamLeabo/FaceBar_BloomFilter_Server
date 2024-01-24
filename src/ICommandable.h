@@ -1,12 +1,12 @@
 #ifndef ICOMMANDABLE_H
 #define ICOMMANDABLE_H
+
 #include <string>
 #include <map>
 
 using namespace std;
 
-class ICommandable
-{
+class ICommandable {
 public:
     virtual void execute(string url) = 0;
 };
