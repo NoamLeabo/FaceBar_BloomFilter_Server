@@ -41,4 +41,11 @@ Our final code contains the following main components:
 
 
 DOCKER:
+For the docker part, we created a yml file to create and push a new image to dockerhub.
+We also created a Dockerfile for the yml to use.
 
+Dockerfile explanation: 
+Copyies all cpp files and relevant header files to the machine, compiles the cpp files and runs the created exe file.
+
+Docker push-to-hub explanation:
+on release, the yml file logins to docker hub, downloads builds and pushes an image of the program to dockerhub/
