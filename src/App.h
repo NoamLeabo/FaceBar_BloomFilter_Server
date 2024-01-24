@@ -5,17 +5,16 @@
 #include "BloomFilter.h"
 #include "ICommandable.h"
 
-
 class App
 {
 private:
     map<int, ICommandable *> commands;
     BloomFilter bF;
-    vector<HashFunc*> funcBank;
+    vector<HashFunc *> funcBank;
     int numOfCommands;
 
 public:
-    App(vector<HashFunc*> funcBank);
+    App(vector<HashFunc *> funcBank);
     void run();
     void addCommand(int index, ICommandable *command);
 };

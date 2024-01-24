@@ -3,17 +3,17 @@
 #include <string>
 #include <vector>
 
-
 using namespace std;
 class ConsoleMenu
 {
 private:
-    void removeDuplicates(std::vector<int>& vec);
-    bool validateIntVector(const std::vector<int>& vec);
+    void removeDuplicates(std::vector<int> &vec);
+    bool validateIntVector(const std::vector<int> &vec);
+
 public:
     ConsoleMenu();
     void init(int initVals[]);
-    string* nextCommand(string commandVals[]);
+    string *nextCommand(string commandVals[]);
 };
 
 #endif

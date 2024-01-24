@@ -62,7 +62,7 @@ void App::run()
         addCommand(2, &check);
     }
 
-    //commandVals - the user's command and url for us to deal with
+    // commandVals - the user's command and url for us to deal with
     string commandVals[2];
     int task;
     while (true)
@@ -72,5 +72,5 @@ void App::run()
         task = stoi(commandVals[0]);
         // performing the given task by executing its action
         this->commands[task]->execute(commandVals[1]);
-        }
+    }
 }
