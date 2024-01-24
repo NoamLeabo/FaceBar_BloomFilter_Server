@@ -53,7 +53,9 @@ on release, the yml file logins to docker hub, downloads builds and pushes an im
 
 To run the image, run the following commands in the command line, while in the project directory:
 "docker build -t foobar_project ." - to build the image **Improtant - add the dot at the end of the command**
-"docker run -i -t foobar_project" - to run the image. you can then input the array size along with the hash functions. now you're ready to blacklist all of the unwanted urls and check for blacklisted ones.
+
+"docker run -i -t foobar_project" - to run the image. you can then input the array size along with the hash functions.
+now you're ready to blacklist all of the unwanted urls and check for blacklisted ones.
 alternativly, run:
 "docker pull arnonlutsky/foobar_project:latest" to pull the image created on release - works only with required premissions because the repository is private.
 "docker run -i -t arnonlutsky/foobar_project:latest" - to run the pulled image.
