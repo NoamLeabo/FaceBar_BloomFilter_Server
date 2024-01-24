@@ -42,7 +42,7 @@ Our final code contains the following main components:
 
 DOCKER:
 
-For the docker part, we created a yml file to create and push a new image to dockerhub.
+For the docker part, we created a yml file to create and push a new image to dockerhub on every release.
 We also created a Dockerfile for the yml to use.
 
 Dockerfile explanation: 
@@ -50,3 +50,15 @@ Copyies all cpp files and relevant header files to the machine, compiles the cpp
 
 Docker push-to-hub explanation:
 on release, the yml file logins to docker hub, downloads builds and pushes an image of the program to dockerhub.
+
+To run the image, run the following commands in the command line, while in the project directory:
+"docker build -t foobar_project ." - to build the image **Improtant - add the dot at the end of the command**
+"docker run -i -t foobar_project" - to run the image. you can then input the array size along with the hash functions. now you're ready to blacklist all of the unwanted urls and check for blacklisted ones.
+alternativly, run:
+"docker pull arnonlutsky/foobar_project:latest" to pull the image created on release - works only with required premissions because the repository is private.
+"docker run -i -t arnonlutsky/foobar_project:latest" - to run the pulled image.
+
+Proof that the image pushed on relase works:
+![](proof/proof1.png)
+![](proof/proof2.png)
+
