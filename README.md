@@ -12,7 +12,7 @@ We started by reading the exercise a few times and understanding all components.
 Then we decided how to divide the project between all the teammates.
 After that everyone wrote his own tasks in the Jira and we checked that all tasks were covered.
 We started working on the project and everyone updated his tasks and what he was currently working on.
-Every crucial step was written in the Jira so everyone could now where we are standing and what needs to be done.
+Every crucial step was written in the Jira so everyone could know where we are standing and what needs to be done.
 
 TDD:
 
@@ -24,20 +24,25 @@ Our process was as followed:
 
 
 After we finished writing the BloomFilter class we refactored it again to improve our code and make it more abstract and loose-coupled from the hash functions.
+We extracted the whole hash Funcs mechanism out of the bloom filter in order to make it less dependent.
 We then wrote a simple main that is running the BloomFilter and getting inputs from the user.
-Then we started to refactor the main to get OOP classes to have the MenuCommands separate form the user 
-inputs and a small main function.
+Then we started to refactor the main to get OOP classes to have the MenuCommands which will be responsable for getting the input from the user and performt he
+action in the BF without the BF even knowing about the task neither the command. 
+By doing so we managed to achive a smaller and more compact main function.
 We then found out that our BloomFilter needs to be refactored and other files needed also to 
 be changed.
-We continued refactoring according to tests we made to pass all tests and have more abstract and readable code.
+We continued refactoring and making the code more OOP, abstract and readable, while making sure that after every single step we still pass all tests.
 Our final code contains the following main components: 
-1. BloomFilter- the blomfilter asked to code in the exercise.
-2. App- file who runs the main loop of the program and interacting with the user's input.
-3. ConsoleMenu- getting the first crucial input that indicates us the length of the bloomfilter and the number of hash functions used.
+
+1. BloomFilter - the blomfilter asked to be coded in the exercise.
+2. App - the file which create the BF and runs the program loop.
+3. ConsoleMenu - getting the input that indicates us the length of the bloomfilter and the number of hash functions used, and after that supplies the new tasks for the BF to be made.
 4. main- creating an APP object and calling APP's run fucntion.
-5. HashNo1,2- specific hash functions that were asked to use.
-6. CheckUrl- checking if a specific URL is in the bloomfilter.
-7. AddUrl- adding a URL to a bloomfilter.
+5. HashFunc - an abstruct class containing the basic mechanism for the others HashFunctions to come.
+6. HashNo1,2- specific hash functions that were asked to use.
+7. ICommandable - an interface for the commandable classes with the "execute" Func.
+8. CheckUrl- checking if a specific URL is in the bloomfilter (separated to true-true and true-false).
+9. AddUrl- adding a URL to a bloomfilter.
 
 
 DOCKER:
