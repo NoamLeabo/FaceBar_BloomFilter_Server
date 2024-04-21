@@ -14,7 +14,7 @@ using namespace std;
 
 // constructor
 App::App(vector<HashFunc *> funcBank) : funcBank(funcBank),
-                                        bF(0, 1, funcBank),
+                                        bF(nullptr),
                                         numOfCommands(0), commands() {
 }
 
@@ -39,25 +39,27 @@ void App::run() {
     // if we have only 2 args (0 and 1) it means we have only 1 HF
     if (initVals[2] == -1) {
         // we build our BF accordingly
-        bF = BloomFilter(initVals[0], initVals[1], this->funcBank);
+        BloomFilter b = BloomFilter(initVals[0], initVals[1], this->funcBank);
+        bF = &b;
         // we set a new commandable and attach it to our new BF
-        AddUrl add(&bF);
+        AddUrl add(bF);
         addCommand(1, &add);
         // we set a new commandable and attach it to our new BF
-        CheckUrl check(&bF);
+        CheckUrl check(bF);
         addCommand(2, &check);
     } else
         // if we get to this block it means we have only 3 args, and we
         // have 2 HF
     {
         // we build our BF accordingly
-        bF = BloomFilter(initVals[0], initVals[1], initVals[2],
+        BloomFilter b = BloomFilter(initVals[0], initVals[1], initVals[2],
                          this->funcBank);
+        bF = &b;
         // we set a new commandable and attach it to our new BF
-        AddUrl add(&bF);
+        AddUrl add(bF);
         addCommand(1, &add);
         // we set a new commandable and attach it to our new BF
-        CheckUrl check(&bF);
+        CheckUrl check(bF);
         addCommand(2, &check);
     }
 
@@ -71,4 +73,30 @@ void App::run() {
         // performing the given task by executing its action
         this->commands[task]->execute(commandVals[1]);
     }
+}
+
+bool App::bFInitialized() {
+    return this->bF->getBFInit();
+}
+
+void App::setBFInit() {
+    this->bF->setBFInit();
+}
+
+BloomFilter *App::getBF() {
+    return this->bF;
+}
+
+bool App::doCommand(int task, string url){
+    return this->commands[task]->execute(url);
+}
+
+vector<HashFunc *> App::getFuncBank() {
+    return this->funcBank;
+}
+
+
+void App::setBF(BloomFilter* bf) {
+    this->bF = bf;
+    this->setBFInit();
 }

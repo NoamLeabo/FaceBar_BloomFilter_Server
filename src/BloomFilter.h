@@ -19,6 +19,7 @@ private:
     int numOfHashers;
 
     void resetBitsArray(int size);
+    bool initialiezed = false;
 
 public:
     BloomFilter(int size, int num1, vector<HashFunc *> funcBank);
@@ -38,6 +39,12 @@ public:
     int getIndex();
 
     bool urlBlacklistCheck(string url);
+
+    void setBFInit();
+
+    bool getBFInit();
+
+    void printBlacklist();
 };
 
 #endif

@@ -18,6 +18,8 @@ public:
     void init(int initVals[]);
 
     string *nextCommand(string commandVals[]);
+
+    void initFromBuff(int initVals[3], string buff);
 };
 
 #endif

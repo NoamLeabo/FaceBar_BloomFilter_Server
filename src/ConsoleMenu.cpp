@@ -101,3 +101,50 @@ string *ConsoleMenu::nextCommand(string commandVals[]) {
         }
     }
 }
+
+void ConsoleMenu::initFromBuff(int initVals[3], string buff) {
+    // we set a new vector to store the input
+    std::vector<int> result;
+    // ints extractor
+    std::istringstream iss(buff);
+    int number;
+    // while we manage to read an int we push it to the vector
+    while (iss >> number) {
+        result.push_back(number);
+    }
+
+    // Check if there was any invalid input
+    if (!iss.eof()) {
+        result.clear(); // Clear the vector in case of invalid input
+    } else {
+        // now we check that except the array size we didn't get any
+        // num which is not 1 or 2
+        if (validateIntVector(result)) {
+            // remove any duplicates in the vector
+            removeDuplicates(result);
+            // we separate for 2 cases
+
+            // we have 2 HashFunc to work with
+            if (result.size() == 3) {
+                // array size
+                initVals[0] = result.at(2);
+                // HF No. 1
+                initVals[1] = result.at(1);
+                // HF No. 2
+                initVals[2] = result.at(0);
+                return;
+            }
+                // we have 1 HashFunc to work with
+            else {
+                // array size
+                initVals[0] = result.at(1);
+                // HF No. 1
+                initVals[1] = result.at(0);
+                initVals[2] = -1;
+                return;
+            }
+        } else
+            // we start over
+            result.clear();
+    }
+}

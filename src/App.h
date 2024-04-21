@@ -9,7 +9,7 @@
 class App {
 private:
     map<int, ICommandable *> commands;
-    BloomFilter bF;
+    BloomFilter* bF;
     vector<HashFunc *> funcBank;
     int numOfCommands;
 
@@ -19,6 +19,20 @@ public:
     void run();
 
     void addCommand(int index, ICommandable *command);
+
+    bool bFInitialized();
+
+    void setBFInit();
+
+    BloomFilter *getBF();
+
+    bool doCommand(int task, string url);
+
+    vector<HashFunc *> getFuncBank();
+
+    void printList();
+
+    void setBF(BloomFilter* bF);
 };
 
 #endif

@@ -111,3 +111,23 @@ int BloomFilter::getIndex() {
     }
     return -1;
 }
+
+void BloomFilter::setBFInit() {
+    this->initialiezed = true;
+}
+
+bool BloomFilter::getBFInit() {
+    if (this == nullptr)
+    {
+        return false;
+    } else {
+        return this->initialiezed;
+    }
+}
+
+void BloomFilter::printBlacklist() {
+    for (int i = 0; i < list.size(); i++)
+    {
+        cout << list[i] << endl;
+    }
+}

@@ -8,7 +8,7 @@ using namespace std;
 
 class ICommandable {
 public:
-    virtual void execute(string url) = 0;
+    virtual bool execute(string url) = 0;
 };
 
 #endif

@@ -15,7 +15,7 @@ private:
 public:
     CheckUrl(BloomFilter *bF);
 
-    void execute(string url);
+    bool execute(string url);
 };
 
 #endif

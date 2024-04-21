@@ -6,7 +6,7 @@
 CheckUrl::CheckUrl(BloomFilter *bF) : bF(bF) {}
 
 // we check whether the given URL is in the BF
-void CheckUrl::execute(string url) {
+bool CheckUrl::execute(string url) {
     // first checking if the URL is in the array in terms of bits
     bool check = this->bF->checkInBitsArray(url);
 
@@ -18,10 +18,14 @@ void CheckUrl::execute(string url) {
         // we print as the results say
         if (check) {
             cout << "true" << endl;
-        } else
+            return true;
+        } else {
             cout << "false" << endl;
+            return false;
+        }
     }
         // if we get negative we simply print false
     else
         cout << "false" << endl;
+    return false;
 }
