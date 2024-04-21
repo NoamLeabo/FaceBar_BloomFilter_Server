@@ -88,7 +88,8 @@ BloomFilter *App::getBF() {
 }
 
 bool App::doCommand(int task, string url){
-    return this->commands[task]->execute(url);
+    bool res = this->commands[task]->execute(url);
+    return res;
 }
 
 vector<HashFunc *> App::getFuncBank() {

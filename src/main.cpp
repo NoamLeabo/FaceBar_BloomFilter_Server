@@ -19,6 +19,7 @@ void handleClient(int client_sock, App* app_ptr)
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
     App* app = app_ptr;
+    BloomFilter bf = BloomFilter(0, 1, app->getFuncBank());
     while (true)
     {
         int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
@@ -45,11 +46,15 @@ void handleClient(int client_sock, App* app_ptr)
                 {
                     buffer[0] = 'F';
                     sent_bytes = send(client_sock, buffer, read_bytes, 0);
+                    close(client_sock);
+                    break;
                 }
                 else
                 {
                     buffer[0] = 'T';
                     sent_bytes = send(client_sock, buffer, read_bytes, 0);
+                    close(client_sock);
+                    break;
                 }
                 if (sent_bytes < 0)
                 {
@@ -62,7 +67,6 @@ void handleClient(int client_sock, App* app_ptr)
                 ConsoleMenu menu;
                 int initVals[3];
                 menu.initFromBuff(initVals, buffer);
-                BloomFilter bf = BloomFilter(0, 1, app->getFuncBank());
                 if (initVals[2] == -1)
                 {
                     bf = BloomFilter(initVals[0], initVals[1], app->getFuncBank());
@@ -96,7 +100,7 @@ int main()
     funcBank.push_back(&f2);
     App app(funcBank);
 
-    const int server_port = 7272;
+    const int server_port = 7979;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0)
     {
