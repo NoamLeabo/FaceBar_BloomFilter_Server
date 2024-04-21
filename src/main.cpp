@@ -4,6 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <vector>
+#include <sstream>
 #include <thread> // Add this header for multithreading
 
 #include "App.h"
@@ -14,11 +16,11 @@
 #include "ConsoleMenu.h"
 using namespace std;
 
-void handleClient(int client_sock, App* app_ptr)
+void handleClient(int client_sock, App *app_ptr)
 {
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
-    App* app = app_ptr;
+    App *app = app_ptr;
     BloomFilter bf = BloomFilter(0, 1, app->getFuncBank());
     while (true)
     {
@@ -46,8 +48,6 @@ void handleClient(int client_sock, App* app_ptr)
                 {
                     buffer[0] = 'F';
                     sent_bytes = send(client_sock, buffer, read_bytes, 0);
-                    close(client_sock);
-                    break;
                 }
                 else
                 {
@@ -67,6 +67,7 @@ void handleClient(int client_sock, App* app_ptr)
                 ConsoleMenu menu;
                 int initVals[3];
                 menu.initFromBuff(initVals, buffer);
+                cout << buffer << endl;
                 if (initVals[2] == -1)
                 {
                     bf = BloomFilter(initVals[0], initVals[1], app->getFuncBank());
@@ -75,19 +76,32 @@ void handleClient(int client_sock, App* app_ptr)
                 {
                     bf = BloomFilter(initVals[0], initVals[1], initVals[2], app->getFuncBank());
                 }
+                int sent_bytes = send(client_sock, buffer, read_bytes, 0);
+            
                 AddUrl add(&bf);
                 app->addCommand(1, &add);
                 CheckUrl check(&bf);
                 app->addCommand(2, &check);
-                cout << "BloomFilter not initialized" << endl;
-                app->doCommand(1, "http://www.google.com");
-                app->doCommand(2, "http://www.google1.com");
-                app->doCommand(2, "http://www.google.com");
+                //cout << "BloomFilter not initialized" << endl;
+                int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
+                // cout << buffer << endl;
+                std::vector<std::string> urls;
+                char* url = strtok(buffer, ",");
+                while (url != NULL) {
+                    urls.push_back(std::string(url));
+                    url = strtok(NULL, ",");
+                }
+                for (const auto& url : urls) {
+                    std::cout << url << std::endl;
+                    app->doCommand(1, url);
+                }
+                // app->doCommand(1, "http://www.google.com");
+                // app->doCommand(2, "http://www.google1.com");
+                // app->doCommand(2, "http://www.google.com");
                 app->setBF(&bf);
             }
         }
     }
-
     close(client_sock);
 }
 
