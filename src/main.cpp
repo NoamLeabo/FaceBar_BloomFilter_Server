@@ -41,6 +41,7 @@ void handleClient(int client_sock, App *app_ptr)
             {
                 int task = stoi(string(1, buffer[0]));
                 string url = string(&buffer[2]);
+                cout << "the url is: " + url << endl;
                 bool res = app->doCommand(task, url);
                 // "2 " + url
                 int sent_bytes;
@@ -48,12 +49,14 @@ void handleClient(int client_sock, App *app_ptr)
                 {
                     buffer[0] = 'F';
                     sent_bytes = send(client_sock, buffer, read_bytes, 0);
+                    memset(buffer, 0, sizeof(buffer));
                 }
                 else
                 {
                     buffer[0] = 'T';
                     sent_bytes = send(client_sock, buffer, read_bytes, 0);
-                    close(client_sock);
+                    memset(buffer, 0, sizeof(buffer));
+                    // close(client_sock);
                     break;
                 }
                 if (sent_bytes < 0)
@@ -103,6 +106,7 @@ void handleClient(int client_sock, App *app_ptr)
         }
     }
     close(client_sock);
+    cout << "client was closed" << endl;
 }
 
 int main()
@@ -157,5 +161,6 @@ int main()
     }
 
     close(sock);
+    cout << "main socket was closed" << endl;
     return 0;
 }
