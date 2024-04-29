@@ -16,7 +16,7 @@ COPY ./src/ConsoleMenu.cpp ./src/
 COPY ./src/*.h ./src/
 
 # Compile the source files
-RUN g++ -o main ./src/main.cpp ./src/App.cpp ./src/BloomFilter.cpp ./src/HashNo1.cpp ./src/HashNo2.cpp ./src/AddUrl.cpp ./src/CheckUrl.cpp ./src/ConsoleMenu.cpp
-
+RUN g++ -o main2 ./src/main.cpp ./src/App.cpp ./src/BloomFilter.cpp ./src/HashNo1.cpp ./src/HashNo2.cpp ./src/AddUrl.cpp ./src/CheckUrl.cpp ./src/ConsoleMenu.cpp
+EXPOSE 7979
 # Set the command to run when the container starts
-CMD ["./main"]
+CMD ["./main2"]
