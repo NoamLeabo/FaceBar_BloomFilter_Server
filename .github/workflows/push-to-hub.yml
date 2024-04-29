@@ -18,11 +18,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: arnonlutsky/Foobar_Project
+      # - name: Docker meta
+      #   id: meta
+      #   uses: docker/metadata-action@v5
+      #   with:
+      #     images: arnonlutsky/Foobar_Project
+      -  name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -30,5 +32,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}/BF:latest
-          labels: ${{ steps.meta.outputs.labels }}/BF:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/BF:latest
+          # labels: ${{ steps.meta.outputs.labels }}/BF:latest
