@@ -2,17 +2,15 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "2nd-production" ]
+    branches: ["2nd-production"]
   pull_request:
-    branches: [ "2nd-production" ]
+    branches: ["2nd-production"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag Bloom-Filter_Image:$(date +%s)
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag bloom-filter_image:$(date +%s)
