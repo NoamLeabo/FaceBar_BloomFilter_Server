@@ -1,5 +1,7 @@
 # Foobar_Project
 
+**wiki - https://github.com/arnonLuts/FaceBar_Server/wiki
+
 How to compile and run our Project:
 
 COMPILE: in the src dir - ```g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp```
@@ -69,4 +71,3 @@ Proof that the image pushed on relase works:
 ![](proof/proof1.png)
 ![](proof/proof2.png)
 
-wiki - https://github.com/arnonLuts/FaceBar_Server/wiki
