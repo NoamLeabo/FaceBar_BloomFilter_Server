@@ -2,7 +2,7 @@
 
 How to compile and run our Project:
 
-COMPILE: g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp
+COMPILE: in the src dir - ```g++ -o main main.cpp App.cpp  BloomFilter.cpp HashNo1.cpp HashNo2.cpp AddUrl.cpp CheckUrl.cpp ConsoleMenu.cpp```
 
 RUN:  ./main
 
