@@ -1,6 +1,6 @@
 # Foobar_Project
 
-**wiki - https://github.com/arnonLuts/FaceBar_Server/wiki
+**wiki - https://github.com/arnonLuts/FaceBar_Server/wiki**
 
 How to compile and run our Project:
 
