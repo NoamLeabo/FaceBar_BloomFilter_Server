@@ -69,3 +69,4 @@ Proof that the image pushed on relase works:
 ![](proof/proof1.png)
 ![](proof/proof2.png)
 
+wiki - https://github.com/arnonLuts/FaceBar_Server/wiki
