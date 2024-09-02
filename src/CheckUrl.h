@@ -8,13 +8,17 @@
 
 using namespace std;
 
+// CheckUrl class
 class CheckUrl : public ICommandable {
 private:
+    // bloom filter
     BloomFilter *bF;
 
 public:
+    // constructor
     CheckUrl(BloomFilter *bF);
 
+    // execute the command
     bool execute(string url);
 };
 

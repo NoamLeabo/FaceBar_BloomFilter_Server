@@ -112,10 +112,12 @@ int BloomFilter::getIndex() {
     return -1;
 }
 
+// set the BF as initialized
 void BloomFilter::setBFInit() {
     this->initialiezed = true;
 }
 
+// get the BF's initialization status
 bool BloomFilter::getBFInit() {
     if (this == nullptr)
     {
@@ -125,6 +127,7 @@ bool BloomFilter::getBFInit() {
     }
 }
 
+// print the BF's blacklist
 void BloomFilter::printBlacklist() {
     for (int i = 0; i < list.size(); i++)
     {

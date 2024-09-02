@@ -6,8 +6,10 @@
 
 using namespace std;
 
+// interface for commandable classes
 class ICommandable {
 public:
+    // execute the command
     virtual bool execute(string url) = 0;
 };
 

@@ -75,28 +75,33 @@ void App::run() {
     }
 }
 
+// returns whether the BF is initialized
 bool App::bFInitialized() {
     return this->bF->getBFInit();
 }
 
+// setting the BF to be initialized
 void App::setBFInit() {
     this->bF->setBFInit();
 }
 
+// returns the app's BF
 BloomFilter *App::getBF() {
     return this->bF;
 }
 
+// performing a command
 bool App::doCommand(int task, string url){
     bool res = this->commands[task]->execute(url);
     return res;
 }
 
+// returns the app's HF bank
 vector<HashFunc *> App::getFuncBank() {
     return this->funcBank;
 }
 
-
+// setting the app's BF
 void App::setBF(BloomFilter* bf) {
     this->bF = bf;
     this->setBFInit();
